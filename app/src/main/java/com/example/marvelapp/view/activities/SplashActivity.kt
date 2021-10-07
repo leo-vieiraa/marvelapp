@@ -1,6 +1,7 @@
 package com.example.marvelapp.view.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.marvelapp.R
@@ -14,9 +15,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_activity)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, HomeFragment.newInstance())
-            .commitNow()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
 
     }
 }

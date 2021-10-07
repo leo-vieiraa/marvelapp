@@ -15,7 +15,7 @@ class SuperHeroRepository @Inject constructor(
         return withContext(Dispatchers.Default) {
             val results = service.fetchSuperHeroes()
             val processedResponse = processData(results)
-            processedResponse?.results
+            processedResponse?.data?.results
         }
     }
 

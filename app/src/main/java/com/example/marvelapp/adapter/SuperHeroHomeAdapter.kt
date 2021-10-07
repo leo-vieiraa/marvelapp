@@ -36,9 +36,11 @@ class SuperHeroHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(superHero: SuperHero) {
 
         Glide.with(itemView)
-            .load(superHero.thumbnail)
+            .load("${superHero.thumbnail.path}.${superHero.thumbnail.extension}")
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(binding.superheroImageView)
+
+        binding.superheroNameTextView.text = superHero.name
 
     }
 

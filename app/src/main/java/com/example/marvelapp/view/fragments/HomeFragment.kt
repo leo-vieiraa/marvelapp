@@ -27,7 +27,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     private val superHeroHomeAdapter = SuperHeroHomeAdapter ()
 
     private val observerSuperHeroList = Observer<List<SuperHero>> {
-
+        superHeroHomeAdapter.submitList(it)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
