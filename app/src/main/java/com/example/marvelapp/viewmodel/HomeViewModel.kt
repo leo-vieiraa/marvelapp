@@ -15,13 +15,27 @@ class HomeViewModel @Inject constructor(
     private val repository: SuperHeroRepository
 ) : ViewModel() {
 
-    val _superHeroList = MutableLiveData<List<SuperHero>>()
-    var superHeroList: LiveData<List<SuperHero>> = _superHeroList
+    private val _superHeroList = MutableLiveData<List<SuperHero>>()
+    val superHeroList: LiveData<List<SuperHero>> = _superHeroList
 
-    fun fetchSuperHeroes() {
+    private val _page = MutableLiveData<Int>()
+    val page: LiveData<Int> = _page
+
+    private var _query: String? = null
+
+    fun fetchSuperHeroes(page: Int = 1) {
         viewModelScope.launch {
-            _superHeroList.value = repository.fetchSuperHeroes()
+            _superHeroList.value = repository.fetchSuperHeroes(query = _query)
         }
+    }
+
+    fun nextPage() {
+        _page.value = (_page.value ?: 0) + 1
+    }
+
+    fun searchFor(q: String?) {
+        _query = q
+        _page.value = 1
     }
 
 }
