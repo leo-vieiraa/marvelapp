@@ -17,6 +17,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:foreground="@drawable/gradient_rectangle"
+            android:foregroundGravity="bottom"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,9 +32,11 @@
 
                 <ImageView
                     android:id="@+id/iv_home_listing_hero_photo"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="156dp"
+                    android:layout_height="156dp"
                     android:scaleType="fitXY"
+                    android:foreground="@drawable/gradient_rectangle"
+                    android:foregroundGravity="bottom"
                     android:src="@drawable/ic_launcher_background"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +51,7 @@
                     android:text="@string/tv_hero_name"
                     android:textSize="16sp"
                     android:textColor="@color/white"
+                    android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
