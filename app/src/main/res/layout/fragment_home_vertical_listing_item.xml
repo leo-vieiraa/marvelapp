@@ -29,7 +29,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/superheroImageView"
+                    android:id="@+id/iv_home_listing_hero_photo"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:scaleType="fitXY"
@@ -40,11 +40,11 @@
                     app:layout_constraintEnd_toEndOf="parent"/>
 
                 <TextView
-                    android:id="@+id/superheroNameTextView"
+                    android:id="@+id/tv_home_listing_hero_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Super Hero Name"
+                    android:text="@string/tv_hero_name"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:fontFamily="sans-serif-black"

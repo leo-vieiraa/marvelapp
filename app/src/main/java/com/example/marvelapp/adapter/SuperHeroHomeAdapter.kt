@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.marvelapp.R
-import com.example.marvelapp.databinding.HeroListItemBinding
+import com.example.marvelapp.databinding.FragmentHomeVerticalListingItemBinding
 import com.example.marvelapp.model.SuperHero
 
 class SuperHeroHomeAdapter : ListAdapter<SuperHero, SuperHeroHomeViewHolder>(DiffUtilItemCallback()) {
@@ -16,7 +16,7 @@ class SuperHeroHomeAdapter : ListAdapter<SuperHero, SuperHeroHomeViewHolder>(Dif
     private val listOfSuperHeroes = mutableListOf<SuperHero>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroHomeViewHolder {
-        LayoutInflater.from(parent.context).inflate(R.layout.hero_list_item, parent, false).apply {
+        LayoutInflater.from(parent.context).inflate(R.layout.fragment_home_vertical_listing_item, parent, false).apply {
             return SuperHeroHomeViewHolder(this)
         }
     }
@@ -31,7 +31,7 @@ class SuperHeroHomeAdapter : ListAdapter<SuperHero, SuperHeroHomeViewHolder>(Dif
 
 class SuperHeroHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val binding = HeroListItemBinding.bind(view)
+    private val binding = FragmentHomeVerticalListingItemBinding.bind(view)
 
     fun bind(superHero: SuperHero) {
 
@@ -39,9 +39,9 @@ class SuperHeroHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             .load("${superHero.thumbnail.path}.${superHero.thumbnail.extension}")
             .fitCenter()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(binding.superheroImageView)
+            .into(binding.ivHomeListingHeroPhoto)
 
-        binding.superheroNameTextView.text = superHero.name
+        binding.tvHomeListingHeroName.text = superHero.name
 
     }
 
