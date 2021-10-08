@@ -1,7 +1,6 @@
 package com.example.marvelapp.services
 
 import com.example.marvelapp.model.DataResponse
-import com.example.marvelapp.model.SuperHeroList
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
