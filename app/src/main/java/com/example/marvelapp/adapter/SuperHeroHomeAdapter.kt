@@ -11,7 +11,10 @@ import com.example.marvelapp.R
 import com.example.marvelapp.databinding.FragmentHomeVerticalListingItemBinding
 import com.example.marvelapp.model.SuperHero
 
-class SuperHeroHomeAdapter(val listingType: ListingType) : ListAdapter<SuperHero, SuperHeroHomeViewHolder>(DiffUtilItemCallback()) {
+class SuperHeroHomeAdapter(
+    private val listingType: ListingType,
+    private val onclick: (SuperHero) -> Unit
+    ) : ListAdapter<SuperHero, SuperHeroHomeViewHolder>(DiffUtilItemCallback()) {
 
     private val listOfSuperHeroes = mutableListOf<SuperHero>()
 
@@ -28,8 +31,9 @@ class SuperHeroHomeAdapter(val listingType: ListingType) : ListAdapter<SuperHero
     }
 
     override fun onBindViewHolder(holder: SuperHeroHomeViewHolder, position: Int) {
-        getItem(position).let {
-            holder.bind(it)
+        getItem(position).let { superhero ->
+            holder.bind(superhero)
+            holder.itemView.setOnClickListener { onclick(superhero) }
         }
     }
 

@@ -7,8 +7,10 @@
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.1712962962962963" />
         <entry key="app/src/main/res/drawable/ic_marvel_logo.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/font/roboto.xml" value="0.16018518518518518" />
+        <entry key="app/src/main/res/layout/activity_details_show.xml" value="0.20425724637681159" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_details_show.xml" value="0.20425724637681159" />
         <entry key="app/src/main/res/layout/fragment_home_horizontal_listing.xml" value="0.20425724637681159" />
         <entry key="app/src/main/res/layout/fragment_home_horizontal_listing_item.xml" value="0.20425724637681159" />
         <entry key="app/src/main/res/layout/fragment_home_vertical_listing.xml" value="0.335" />

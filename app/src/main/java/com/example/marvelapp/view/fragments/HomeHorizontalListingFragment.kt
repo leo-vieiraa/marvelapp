@@ -11,7 +11,7 @@ import com.example.marvelapp.adapter.ListingType
 import com.example.marvelapp.adapter.SuperHeroHomeAdapter
 import com.example.marvelapp.databinding.FragmentHomeHorizontalListingBinding
 import com.example.marvelapp.model.SuperHero
-import com.example.marvelapp.viewmodel.HomeListingViewModel
+import com.example.marvelapp.viewmodel.ViewModelHomeListing
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,9 +21,11 @@ class HomeHorizontalListingFragment : Fragment(R.layout.fragment_home_horizontal
         fun newInstance() = HomeHorizontalListingFragment()
     }
 
-    private lateinit var viewModel: HomeListingViewModel
+    private lateinit var viewModelHomeListing: ViewModelHomeListing
     private lateinit var binding: FragmentHomeHorizontalListingBinding
-    private val superHeroHomeAdapter = SuperHeroHomeAdapter(ListingType.HORIZONTAL)
+    private val superHeroHomeAdapter = SuperHeroHomeAdapter(ListingType.HORIZONTAL) {
+
+    }
 
     private val observerSuperHeroList = Observer<List<SuperHero>> {
         superHeroHomeAdapter.submitList(it)
@@ -34,12 +36,12 @@ class HomeHorizontalListingFragment : Fragment(R.layout.fragment_home_horizontal
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeHorizontalListingBinding.bind(view)
 
-        viewModel = ViewModelProvider(this).get(HomeListingViewModel::class.java)
-        viewModel.superHeroList.observe(viewLifecycleOwner, observerSuperHeroList)
+        viewModelHomeListing = ViewModelProvider(this).get(ViewModelHomeListing::class.java)
+        viewModelHomeListing.superHeroList.observe(viewLifecycleOwner, observerSuperHeroList)
 
         setupRecyclerView()
 
-        viewModel.fetchSuperHeroes(1, 5, null)
+        viewModelHomeListing.fetchSuperHeroes(1, 5)
 
     }
 

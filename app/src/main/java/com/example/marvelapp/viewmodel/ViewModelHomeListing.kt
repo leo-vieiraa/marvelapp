@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeListingViewModel @Inject constructor(
+class ViewModelHomeListing @Inject constructor(
     private val repository: SuperHeroRepository
 ) : ViewModel() {
 
@@ -23,15 +23,19 @@ class HomeListingViewModel @Inject constructor(
     val page: LiveData<Int> = _page
 
     private var _query: String? = null
+    private var _offset: Int? = null
 
-    fun fetchSuperHeroes(page: Int = 1, limit: Int? = null, offset: Int? = null) {
+    fun fetchSuperHeroes(page: Int = 1, limit: Int? = null) {
         viewModelScope.launch {
-            _superHeroList.value = repository.fetchSuperHeroes(_query, limit, offset)
+            _superHeroList.value = repository.fetchSuperHeroes(_query, limit, _offset)
         }
     }
 
     fun nextPage() {
         _page.value = (_page.value ?: 0) + 1
+
+        _offset = if (_page.value!! > 1) null else 6
+
     }
 
     fun searchFor(q: String?) {
