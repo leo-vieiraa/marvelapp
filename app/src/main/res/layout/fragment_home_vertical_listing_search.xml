@@ -11,6 +11,7 @@
         android:layout_marginTop="20dp"
         android:hint="@string/marvel_cheracters_list"
         android:fontFamily="@font/robotobold"
+        android:textColorHint="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         />
 
@@ -22,6 +23,7 @@
         app:boxBackgroundColor="@color/white"
         app:startIconDrawable="@drawable/ic_search"
         android:hint="@string/search_characters"
+        android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -11,10 +11,10 @@ class SuperHeroRepository @Inject constructor(
     private val service: MarvelApi
 ) {
 
-    suspend fun fetchSuperHeroes(query: String?): List<SuperHero>? {
+    suspend fun fetchSuperHeroes(query: String?, limit: Int?, offset:Int?): List<SuperHero>? {
         return withContext(Dispatchers.Default) {
 
-            val results = service.fetchSuperHeroes(query = query)
+            val results = service.fetchSuperHeroes(query, limit, offset)
 
             val processedResponse = processData(results)
             processedResponse?.data?.results

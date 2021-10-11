@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.marvelapp.model.DataResponse
 import com.example.marvelapp.model.SuperHero
 import com.example.marvelapp.repository.SuperHeroRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeVerticalListing @Inject constructor(
+class HomeListingViewModel @Inject constructor(
     private val repository: SuperHeroRepository
 ) : ViewModel() {
 
@@ -23,9 +24,9 @@ class HomeVerticalListing @Inject constructor(
 
     private var _query: String? = null
 
-    fun fetchSuperHeroes(page: Int = 1) {
+    fun fetchSuperHeroes(page: Int = 1, limit: Int? = null, offset: Int? = null) {
         viewModelScope.launch {
-            _superHeroList.value = repository.fetchSuperHeroes(query = _query)
+            _superHeroList.value = repository.fetchSuperHeroes(_query, limit, offset)
         }
     }
 

@@ -11,13 +11,19 @@ import com.example.marvelapp.R
 import com.example.marvelapp.databinding.FragmentHomeVerticalListingItemBinding
 import com.example.marvelapp.model.SuperHero
 
-class SuperHeroHomeAdapter : ListAdapter<SuperHero, SuperHeroHomeViewHolder>(DiffUtilItemCallback()) {
+class SuperHeroHomeAdapter(val listingType: ListingType) : ListAdapter<SuperHero, SuperHeroHomeViewHolder>(DiffUtilItemCallback()) {
 
     private val listOfSuperHeroes = mutableListOf<SuperHero>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroHomeViewHolder {
-        LayoutInflater.from(parent.context).inflate(R.layout.fragment_home_vertical_listing_item, parent, false).apply {
+
+        LayoutInflater.from(parent.context).inflate(
+            if (listingType == ListingType.VERTICAL) R.layout.fragment_home_vertical_listing_item
+                else R.layout.fragment_home_horizontal_listing_item
+            , parent, false).apply {
+
             return SuperHeroHomeViewHolder(this)
+
         }
     }
 
