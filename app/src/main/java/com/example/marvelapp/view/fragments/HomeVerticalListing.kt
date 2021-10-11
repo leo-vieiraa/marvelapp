@@ -12,17 +12,17 @@ import com.example.marvelapp.adapter.SearchAdapter
 import com.example.marvelapp.adapter.SuperHeroHomeAdapter
 import com.example.marvelapp.databinding.FragmentHomeVerticalListingBinding
 import com.example.marvelapp.model.SuperHero
-import com.example.marvelapp.viewmodel.HomeViewModel
+import com.example.marvelapp.viewmodel.HomeVerticalListing
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home_vertical_listing) {
+class HomeVerticalListing : Fragment(R.layout.fragment_home_vertical_listing) {
 
     companion object {
-        fun newInstance() = HomeFragment()
+        fun newInstance() = HomeVerticalListing()
     }
 
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var verticalListing: HomeVerticalListing
     private lateinit var binding: FragmentHomeVerticalListingBinding
 
 //   ADAPTERS
@@ -30,9 +30,9 @@ class HomeFragment : Fragment(R.layout.fragment_home_vertical_listing) {
     private val searchAdapter = SearchAdapter() {
         clearList = true
         if (it.isEmpty()) {
-            viewModel.searchFor(null)
+            verticalListing.searchFor(null)
         } else {
-            viewModel.searchFor(it)
+            verticalListing.searchFor(it)
         }
     }
     private val superHeroHomeAdapter = SuperHeroHomeAdapter ()
@@ -42,15 +42,15 @@ class HomeFragment : Fragment(R.layout.fragment_home_vertical_listing) {
         superHeroHomeAdapter.submitList(it)
     }
     private val observerPages = Observer<Int> {
-        viewModel.fetchSuperHeroes(page = it)
+        verticalListing.fetchSuperHeroes(page = it)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeVerticalListingBinding.bind(view)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        viewModel.superHeroList.observe(viewLifecycleOwner, observerSuperHeroList)
-        viewModel.page.observe(viewLifecycleOwner, observerPages)
+        verticalListing = ViewModelProvider(this).get(HomeVerticalListing::class.java)
+        verticalListing.superHeroList.observe(viewLifecycleOwner, observerSuperHeroList)
+        verticalListing.page.observe(viewLifecycleOwner, observerPages)
 
         setupRecyclerView()
     }
@@ -65,7 +65,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_vertical_listing) {
                 }
             }
         }
-        viewModel.nextPage()
+        verticalListing.nextPage()
 
     }
 

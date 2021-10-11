@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.HomeFragment">
+    tools:context=".view.fragments.HomeVerticalListing">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_listing_hero_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:paddingStart="40dp"
-        android:paddingEnd="40dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         tools:listitem="@layout/fragment_home_vertical_listing_item"/>
 
 </FrameLayout>

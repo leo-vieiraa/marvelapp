@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class HomeVerticalListing @Inject constructor(
     private val repository: SuperHeroRepository
 ) : ViewModel() {
 

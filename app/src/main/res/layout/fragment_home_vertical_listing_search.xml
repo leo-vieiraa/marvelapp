@@ -4,15 +4,28 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/tv_home_listing_hero_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/marvel_cheracters_list"
+        android:fontFamily="@font/robotobold"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_home_listing_hero_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Type here"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundColor="@color/white"
+        app:startIconDrawable="@drawable/ic_search"
+        android:hint="@string/search_characters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tv_home_listing_hero_list">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
