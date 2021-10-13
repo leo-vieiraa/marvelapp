@@ -2,29 +2,42 @@ package com.example.marvelapp.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.marvelapp.R
-import com.example.marvelapp.view.fragments.FragmentDetailsShow
+import com.bumptech.glide.Glide
+import com.example.marvelapp.databinding.ActivityDetailsShowBinding
+import com.example.marvelapp.model.SuperHero
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ActivityDetailsShow : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDetailsShowBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_details_show)
+        binding = ActivityDetailsShowBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val extras = intent.extras
-        if (extras != null) {
+        setupToolbar()
+        setupDetails()
+    }
 
-            val bundle = Bundle()
-            bundle.putSerializable("hero", extras.getSerializable("hero"))
-            val fragment = FragmentDetailsShow()
-            fragment.arguments = bundle
-
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_details_show_container, fragment)
-                .commitNow()
-
+    private fun setupToolbar() {
+        binding.ivDetailsShowArrowBack.setOnClickListener {
+            finish()
         }
+    }
+
+    private fun setupDetails() {
+
+        val superHero = intent.extras?.getSerializable("hero") as SuperHero
+
+        Glide.with(baseContext)
+            .load("${superHero.thumbnail.path}.${superHero.thumbnail.extension}")
+            .into(binding.ivDetailsShowHeroPhoto)
+
+        binding.tvDetailsShowHeroName.text = superHero.name
+        binding.tvDetailsShowHeroDescription. text = superHero.description
 
     }
+
 }

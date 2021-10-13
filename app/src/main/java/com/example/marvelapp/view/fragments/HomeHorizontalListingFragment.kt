@@ -1,5 +1,6 @@
 package com.example.marvelapp.view.fragments
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import com.example.marvelapp.adapter.ListingType
 import com.example.marvelapp.adapter.SuperHeroHomeAdapter
 import com.example.marvelapp.databinding.FragmentHomeHorizontalListingBinding
 import com.example.marvelapp.model.SuperHero
+import com.example.marvelapp.view.activities.ActivityDetailsShow
 import com.example.marvelapp.viewmodel.ViewModelHomeListing
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +26,9 @@ class HomeHorizontalListingFragment : Fragment(R.layout.fragment_home_horizontal
     private lateinit var viewModelHomeListing: ViewModelHomeListing
     private lateinit var binding: FragmentHomeHorizontalListingBinding
     private val superHeroHomeAdapter = SuperHeroHomeAdapter(ListingType.HORIZONTAL) {
-
+        val i = Intent(requireActivity(), ActivityDetailsShow::class.java)
+        i.putExtra("hero", it)
+        startActivity(i)
     }
 
     private val observerSuperHeroList = Observer<List<SuperHero>> {
