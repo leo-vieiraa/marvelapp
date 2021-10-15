@@ -16,6 +16,8 @@ import com.example.marvelapp.model.SuperHero
 import com.example.marvelapp.viewmodel.ViewModelHomeListing
 import dagger.hilt.android.AndroidEntryPoint
 import android.content.Intent
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.marvelapp.view.activities.ActivityDetailsShow
 
 
@@ -28,6 +30,7 @@ class HomeVerticalListingFragment : Fragment(R.layout.fragment_home_vertical_lis
 
     private lateinit var listingViewModelHomeListing: ViewModelHomeListing
     private lateinit var binding: FragmentHomeVerticalListingBinding
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
 //   ADAPTERS
     private var clearList = false
@@ -49,7 +52,8 @@ class HomeVerticalListingFragment : Fragment(R.layout.fragment_home_vertical_lis
 
 //   OBSERVERS
     private val observerSuperHeroList = Observer<List<SuperHero>> {
-        superHeroHomeAdapter.submitList(it)
+        superHeroHomeAdapter.update(it)
+        swipeRefreshLayout.isRefreshing = false
     }
     private val observerPages = Observer<Int> {
         listingViewModelHomeListing.fetchSuperHeroes(page = it)
@@ -62,6 +66,7 @@ class HomeVerticalListingFragment : Fragment(R.layout.fragment_home_vertical_lis
         listingViewModelHomeListing.superHeroList.observe(viewLifecycleOwner, observerSuperHeroList)
         listingViewModelHomeListing.page.observe(viewLifecycleOwner, observerPages)
 
+        swipeRefreshLayout = binding.srlHomeListingHeroList
         setupRecyclerView()
     }
 
@@ -76,6 +81,20 @@ class HomeVerticalListingFragment : Fragment(R.layout.fragment_home_vertical_lis
             }
         }
         listingViewModelHomeListing.nextPage()
+
+        binding.rvHomeListingHeroList.addOnScrollListener(object :
+            RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    binding.srlHomeListingHeroList.isRefreshing = true
+                    listingViewModelHomeListing.nextPage()
+                }
+            }
+        })
+
+        binding.srlHomeListingHeroList.setOnRefreshListener {
+            binding.srlHomeListingHeroList.isRefreshing = false
+        }
 
     }
 

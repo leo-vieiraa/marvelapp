@@ -37,6 +37,15 @@ class SuperHeroHomeAdapter(
         }
     }
 
+    fun update(newList: List<SuperHero>, clear: Boolean = false) {
+        if (clear) {
+            listOfSuperHeroes.clear()
+        }
+        listOfSuperHeroes.addAll(newList)
+        submitList(listOfSuperHeroes.toMutableList())
+    }
+
+
 }
 
 class SuperHeroHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {

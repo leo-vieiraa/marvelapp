@@ -6,13 +6,20 @@
     android:background="@color/halfwhite"
     tools:context=".view.fragments.HomeVerticalListingFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_home_listing_hero_list"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_home_listing_hero_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        tools:listitem="@layout/fragment_home_vertical_listing_item"/>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_home_listing_hero_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            tools:listitem="@layout/fragment_home_vertical_listing_item"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

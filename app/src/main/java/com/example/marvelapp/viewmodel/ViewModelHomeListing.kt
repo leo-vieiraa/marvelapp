@@ -23,24 +23,21 @@ class ViewModelHomeListing @Inject constructor(
     val page: LiveData<Int> = _page
 
     private var _query: String? = null
-    private var _offset: Int? = null
 
-    fun fetchSuperHeroes(page: Int = 1, limit: Int? = null) {
+    fun fetchSuperHeroes(page: Int = 0, limit: Int? = null) {
         viewModelScope.launch {
-            _superHeroList.value = repository.fetchSuperHeroes(_query, limit, _offset)
+            _superHeroList.value = repository.fetchSuperHeroes(_query, limit, page)
         }
     }
 
     fun nextPage() {
-        _page.value = (_page.value ?: 0) + 1
-
-        _offset = if (_page.value!! > 1) null else 6
+        _page.value = (_page.value ?: 0) + 20
 
     }
 
     fun searchFor(q: String?) {
         _query = q
-        _page.value = 1
+        _page.value = 0
     }
 
 }
