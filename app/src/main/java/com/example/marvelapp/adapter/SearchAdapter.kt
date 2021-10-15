@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.R
-import com.example.marvelapp.databinding.FragmentHomeVerticalListingSearchBinding
+import com.example.marvelapp.databinding.FragmentHomeListingSearchBinding
 
-class SearchAdapter(val ontype: (String) -> Unit) : RecyclerView.Adapter<SearchViewHolder>() {
+class SearchAdapter(private val ontype: (String) -> Unit) : RecyclerView.Adapter<SearchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        LayoutInflater.from(parent.context).inflate(R.layout.fragment_home_vertical_listing_search, parent, false).apply {
+        LayoutInflater.from(parent.context).inflate(R.layout.fragment_home_listing_search, parent, false).apply {
             return SearchViewHolder(this, ontype)
         }
     }
@@ -27,7 +27,7 @@ class SearchAdapter(val ontype: (String) -> Unit) : RecyclerView.Adapter<SearchV
 
 class SearchViewHolder(view: View, val ontype: (String) -> Unit) : RecyclerView.ViewHolder(view) {
 
-    private val binding = FragmentHomeVerticalListingSearchBinding.bind(view)
+    private val binding = FragmentHomeListingSearchBinding.bind(view)
 
     fun bind() {
 

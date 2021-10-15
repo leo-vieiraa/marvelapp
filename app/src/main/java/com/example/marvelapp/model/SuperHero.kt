@@ -11,6 +11,7 @@ data class SuperHero(
 ) : Serializable
 
 data class DataResponse(
+    val code: Int,
     val data: SuperHeroList
 ) : Serializable
 

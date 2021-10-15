@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.marvelapp.R
-import com.example.marvelapp.databinding.FragmentHomeVerticalListingItemBinding
+import com.example.marvelapp.databinding.FragmentHomeListingVerticalItemBinding
 import com.example.marvelapp.model.SuperHero
 
 class SuperHeroHomeAdapter(
@@ -21,8 +21,8 @@ class SuperHeroHomeAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroHomeViewHolder {
 
         LayoutInflater.from(parent.context).inflate(
-            if (listingType == ListingType.VERTICAL) R.layout.fragment_home_vertical_listing_item
-                else R.layout.fragment_home_horizontal_listing_item
+            if (listingType == ListingType.VERTICAL) R.layout.fragment_home_listing_vertical_item
+                else R.layout.fragment_home_listing_horizontal_item
             , parent, false).apply {
 
             return SuperHeroHomeViewHolder(this)
@@ -40,6 +40,8 @@ class SuperHeroHomeAdapter(
     fun update(newList: List<SuperHero>, clear: Boolean = false) {
         if (clear) {
             listOfSuperHeroes.clear()
+            listOfSuperHeroes.addAll(newList)
+            submitList(listOfSuperHeroes.toMutableList())
         }
         listOfSuperHeroes.addAll(newList)
         submitList(listOfSuperHeroes.toMutableList())
@@ -50,7 +52,7 @@ class SuperHeroHomeAdapter(
 
 class SuperHeroHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val binding = FragmentHomeVerticalListingItemBinding.bind(view)
+    private val binding = FragmentHomeListingVerticalItemBinding.bind(view)
 
     fun bind(superHero: SuperHero) {
 

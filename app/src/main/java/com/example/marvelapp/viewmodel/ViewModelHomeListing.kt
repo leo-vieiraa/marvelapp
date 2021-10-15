@@ -22,21 +22,21 @@ class ViewModelHomeListing @Inject constructor(
     private val _page = MutableLiveData<Int>()
     val page: LiveData<Int> = _page
 
-    private var _query: String? = null
+    private val _query = MutableLiveData<String?>()
+    val query: LiveData<String?> = _query
 
     fun fetchSuperHeroes(page: Int = 0, limit: Int? = null) {
         viewModelScope.launch {
-            _superHeroList.value = repository.fetchSuperHeroes(_query, limit, page)
+            _superHeroList.value = repository.fetchSuperHeroes(_query.value, limit, page)
         }
     }
 
     fun nextPage() {
         _page.value = (_page.value ?: 0) + 20
-
     }
 
     fun searchFor(q: String?) {
-        _query = q
+        _query.value = q
         _page.value = 0
     }
 
