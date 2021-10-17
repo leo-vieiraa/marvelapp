@@ -1,9 +1,13 @@
 package com.example.marvelapp.di
 
+import android.content.Context
+import com.example.marvelapp.database.AppDatabase
+import com.example.marvelapp.database.dao.SuperHeroDao
 import com.example.marvelapp.services.MarvelApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,5 +38,10 @@ object AppModule {
 
     @Provides
     fun provideMarvelApi(retrofit: Retrofit): MarvelApi = retrofit.create(MarvelApi::class.java)
+
+    @Provides
+    fun provideMarvelDao(@ApplicationContext context: Context): SuperHeroDao {
+        return AppDatabase.getDatabase(context).getSuperHeroDao()
+    }
 
 }

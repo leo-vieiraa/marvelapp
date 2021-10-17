@@ -1,12 +1,17 @@
 package com.example.marvelapp.model
 
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity
 data class SuperHero(
+    @PrimaryKey
     val id: Int,
     val name: String,
     val description: String,
-    val thumbnail: SuperHeroThumbnail,
+    @Embedded val thumbnail: SuperHeroThumbnail,
     val resourceURI: String
 ) : Serializable
 

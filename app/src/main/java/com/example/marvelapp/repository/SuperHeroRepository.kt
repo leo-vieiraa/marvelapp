@@ -1,5 +1,6 @@
 package com.example.marvelapp.repository
 
+import com.example.marvelapp.database.dao.SuperHeroDao
 import com.example.marvelapp.model.SuperHero
 import com.example.marvelapp.services.MarvelApi
 import kotlinx.coroutines.Dispatchers
@@ -8,7 +9,8 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class SuperHeroRepository @Inject constructor(
-    private val service: MarvelApi
+    private val service: MarvelApi,
+    private val superHeroDao: SuperHeroDao
 ) {
 
     suspend fun fetchSuperHeroes(query: String?, limit: Int?, offset:Int?): List<SuperHero>? {
@@ -17,7 +19,21 @@ class SuperHeroRepository @Inject constructor(
             val results = service.fetchSuperHeroes(query, limit, offset)
 
             val processedResponse = processData(results)
+            insert(processedResponse!!.data.results)
             processedResponse?.data?.results
+        }
+    }
+
+    suspend fun insert(heroList: List<SuperHero>): Boolean {
+        return withContext(Dispatchers.Default) {
+            superHeroDao.insert(heroList)
+            true
+        }
+    }
+
+    suspend fun fetchFromDB(): List<SuperHero> {
+        return withContext(Dispatchers.Default){
+            superHeroDao.fetch()
         }
     }
 

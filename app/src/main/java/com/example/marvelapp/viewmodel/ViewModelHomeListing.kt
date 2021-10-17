@@ -31,6 +31,12 @@ class ViewModelHomeListing @Inject constructor(
         }
     }
 
+    fun fetchSuperHeroes() {
+        viewModelScope.launch {
+            _superHeroList.value = repository.fetchFromDB()
+        }
+    }
+
     fun nextPage() {
         _page.value = (_page.value ?: 0) + 20
     }
