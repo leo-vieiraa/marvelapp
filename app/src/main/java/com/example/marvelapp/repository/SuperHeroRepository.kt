@@ -37,6 +37,18 @@ class SuperHeroRepository @Inject constructor(
         }
     }
 
+    suspend fun fetchFromDB(query: String?): List<SuperHero> {
+        return withContext(Dispatchers.Default){
+            superHeroDao.fetchByName(query)
+        }
+    }
+
+    suspend fun fetchFromDB(query: String?, limit: Int): List<SuperHero> {
+        return withContext(Dispatchers.Default){
+            superHeroDao.fetchFeaturedHeroByName(query, limit)
+        }
+    }
+
     private fun <T> processData(response: Response<T>): T? {
         return if (response.isSuccessful) response.body() else null
     }

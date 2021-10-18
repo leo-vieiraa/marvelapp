@@ -19,11 +19,22 @@ class ViewModelHomeListing @Inject constructor(
     private val _superHeroList = MutableLiveData<List<SuperHero>>()
     val superHeroList: LiveData<List<SuperHero>> = _superHeroList
 
+    private val _featuredSuperHeroList = MutableLiveData<List<SuperHero>>()
+    val featuredSuperHeroList: LiveData<List<SuperHero>> = _featuredSuperHeroList
+
     private val _page = MutableLiveData<Int>()
     val page: LiveData<Int> = _page
 
     private val _query = MutableLiveData<String?>()
     val query: LiveData<String?> = _query
+
+    private val featuredHeroes = arrayListOf(
+        "Black Widow",
+        "Black Panther",
+        "Iron Man",
+        "Thor",
+        "Hulk"
+    )
 
     fun fetchSuperHeroes(page: Int = 0, limit: Int? = null) {
         viewModelScope.launch {
@@ -31,9 +42,29 @@ class ViewModelHomeListing @Inject constructor(
         }
     }
 
+    fun fetchFeaturedSuperHeroes() {
+
+        for (item in featuredHeroes) {
+            viewModelScope.launch {
+                _featuredSuperHeroList.value = repository.fetchSuperHeroes(item, 1, 0)
+            }
+        }
+
+    }
+
     fun fetchSuperHeroesFromDB() {
         viewModelScope.launch {
-            _superHeroList.value = repository.fetchFromDB()
+            _superHeroList.value =
+                if (!_query.value.isNullOrBlank()) repository.fetchFromDB(_query.value)
+                else repository.fetchFromDB()
+        }
+    }
+
+    fun fetchFeaturedSuperHeroesFromDB() {
+        for (item in featuredHeroes) {
+            viewModelScope.launch {
+                _featuredSuperHeroList.value = repository.fetchFromDB(item, 1)
+            }
         }
     }
 

@@ -64,8 +64,6 @@ class HomeListingFragment : Fragment(R.layout.fragment_home_listing) {
     private val observerQuery = Observer<String?> {}
     private val observerSuperHeroList = Observer<List<SuperHero>> {
 
-        superHeroHomeAdapterHorizontal.update(it)
-
         /**
          * When the user search for something, the main list is cleared and the
          * search results are loaded
@@ -78,6 +76,11 @@ class HomeListingFragment : Fragment(R.layout.fragment_home_listing) {
 
         swipeRefreshLayout.isRefreshing = false
     }
+
+    private val observerFeaturedSuperHeroList = Observer<List<SuperHero>> {
+        superHeroHomeAdapterHorizontal.update(it)
+    }
+
     private val observerPages = Observer<Int> {
 
         var hasInternet = (requireActivity() as ActivityHome).checkForInternet(requireContext())
@@ -111,6 +114,7 @@ class HomeListingFragment : Fragment(R.layout.fragment_home_listing) {
         binding = FragmentHomeListingBinding.bind(view)
         listingViewModelHomeListing = ViewModelProvider(this).get(ViewModelHomeListing::class.java)
         listingViewModelHomeListing.superHeroList.observe(viewLifecycleOwner, observerSuperHeroList)
+        listingViewModelHomeListing.featuredSuperHeroList.observe(viewLifecycleOwner, observerFeaturedSuperHeroList)
         listingViewModelHomeListing.page.observe(viewLifecycleOwner, observerPages)
         listingViewModelHomeListing.query.observe(viewLifecycleOwner, observerQuery)
 
@@ -125,10 +129,10 @@ class HomeListingFragment : Fragment(R.layout.fragment_home_listing) {
         layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         if ((requireActivity() as ActivityHome).checkForInternet(requireContext())) {
 
-            listingViewModelHomeListing.fetchSuperHeroes(0, 5)
+            listingViewModelHomeListing.fetchFeaturedSuperHeroes()
 
         } else {
-            listingViewModelHomeListing.fetchSuperHeroesFromDB()
+            listingViewModelHomeListing.fetchFeaturedSuperHeroesFromDB()
         }
 
     }
