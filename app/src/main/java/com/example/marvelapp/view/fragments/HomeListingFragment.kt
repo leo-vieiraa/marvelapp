@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.marvelapp.databinding.FragmentHomeListingBinding
+import com.example.marvelapp.utils.checkForInternet
 import com.example.marvelapp.view.activities.ActivityDetailsShow
+import com.example.marvelapp.view.activities.ActivityHome
 
 
 @AndroidEntryPoint
@@ -78,14 +80,28 @@ class HomeListingFragment : Fragment(R.layout.fragment_home_listing) {
     }
     private val observerPages = Observer<Int> {
 
+        var hasInternet = (requireActivity() as ActivityHome).checkForInternet(requireContext())
+
         /**
          * When the user search for something, the main list is cleared and the
          * search results are loaded
          */
         if (listingViewModelHomeListing.query.value.isNullOrEmpty()){
-            listingViewModelHomeListing.fetchSuperHeroes(page = it)
+
+            if (hasInternet) {
+                listingViewModelHomeListing.fetchSuperHeroes(page = it)
+            } else {
+                listingViewModelHomeListing.fetchSuperHeroesFromDB()
+            }
+
         } else {
-            listingViewModelHomeListing.fetchSuperHeroes(0)
+
+            if (hasInternet) {
+                listingViewModelHomeListing.fetchSuperHeroes(0)
+            } else {
+                listingViewModelHomeListing.fetchSuperHeroesFromDB()
+            }
+
         }
 
     }
@@ -107,7 +123,13 @@ class HomeListingFragment : Fragment(R.layout.fragment_home_listing) {
 
         adapter = superHeroHomeAdapterHorizontal
         layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        listingViewModelHomeListing.fetchSuperHeroes(0, 5)
+        if ((requireActivity() as ActivityHome).checkForInternet(requireContext())) {
+
+            listingViewModelHomeListing.fetchSuperHeroes(0, 5)
+
+        } else {
+            listingViewModelHomeListing.fetchSuperHeroesFromDB()
+        }
 
     }
 

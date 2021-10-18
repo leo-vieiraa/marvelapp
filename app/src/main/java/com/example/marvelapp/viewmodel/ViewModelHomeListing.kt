@@ -31,7 +31,7 @@ class ViewModelHomeListing @Inject constructor(
         }
     }
 
-    fun fetchSuperHeroes() {
+    fun fetchSuperHeroesFromDB() {
         viewModelScope.launch {
             _superHeroList.value = repository.fetchFromDB()
         }
