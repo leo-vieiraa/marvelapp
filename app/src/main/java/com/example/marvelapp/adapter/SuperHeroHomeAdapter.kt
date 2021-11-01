@@ -21,8 +21,7 @@ class SuperHeroHomeAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroHomeViewHolder {
 
         LayoutInflater.from(parent.context).inflate(
-            if (listingType == ListingType.VERTICAL) R.layout.fragment_home_listing_vertical_item
-                else R.layout.fragment_home_listing_horizontal_item
+             R.layout.custom_hero_card
             , parent, false).apply {
 
             return SuperHeroHomeViewHolder(this)
