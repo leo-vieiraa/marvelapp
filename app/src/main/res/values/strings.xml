@@ -4,7 +4,6 @@
     <string name="search_characters">Search characters</string>
     <string name="marvel_cheracters_list">MARVEL CHERACTERS LIST</string>
     <string name="tv_featured_characters">FEATURED CHARACTERS</string>
-    <string name="super_hero_name">Super hero name</string>
-    <string name="super_hero_description">Super hero description</string>
-    <string name="item_name">Item Name</string>
+    <string name="item_description">Super hero description</string>
+    <string name="item_name">Super hero Name</string>
 </resources>
