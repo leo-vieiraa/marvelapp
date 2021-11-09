@@ -4,32 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.ActivityDetailsShow">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/tb_details_show"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/iv_details_show_arrow_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back_black"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/app_logo"/>
-
-    </com.google.android.material.appbar.MaterialToolbar>
+    tools:context=".view.activities.ActivityDetailsShow"
+    android:background="@color/black">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tb_details_show"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,7 +36,8 @@
                 app:layout_constraintTop_toBottomOf="@id/iv_details_item_photo"
                 android:text="@string/item_name"
                 android:fontFamily="@font/robotobold"
-                android:textSize="28sp"/>
+                android:textSize="28sp"
+                android:textColor="@color/halfwhite"/>
 
             <TextView
                 android:id="@+id/tv_details_item_description"
@@ -65,6 +47,7 @@
                 android:text="@string/item_description"
                 android:fontFamily="@font/robotobold"
                 android:textSize="14sp"
+                android:textColor="@color/halfwhite"
                 app:layout_constraintTop_toBottomOf="@id/tv_details_item_name"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

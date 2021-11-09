@@ -1,6 +1,7 @@
 package com.example.marvelapp.components
 
 import android.content.Context
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -24,5 +25,9 @@ class CustomSearchBar @JvmOverloads constructor(
 
     private val binding = CustomSearchBarBinding
         .inflate(LayoutInflater.from(context), this, true)
+
+    fun setSearchListener(textWatcher: TextWatcher) {
+        binding.etHomeListingHeroSearch.editText?.addTextChangedListener(textWatcher)
+    }
 
 }

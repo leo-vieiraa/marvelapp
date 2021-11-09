@@ -8,7 +8,6 @@
         android:id="@+id/et_home_listing_hero_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:boxBackgroundColor="@color/halfwhite"
         app:startIconDrawable="@drawable/ic_search"
         android:hint="@string/search_characters"

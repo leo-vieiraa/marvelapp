@@ -31,7 +31,7 @@ class SearchViewHolder(view: View, val ontype: (String) -> Unit) : RecyclerView.
 
     fun bind() {
 
-        binding.etHomeListingHeroSearch.editText?.addTextChangedListener(object : TextWatcher {
+        binding.etHomeListingHeroSearch.setSearchListener(object : TextWatcher {
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
