@@ -5,9 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.marvelapp.R
+import com.example.marvelapp.components.CustomCard
 import com.example.marvelapp.databinding.FragmentHomeListingVerticalItemBinding
 import com.example.marvelapp.model.SuperHero
 
@@ -21,9 +20,7 @@ class SuperHeroHomeAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroHomeViewHolder {
 
         LayoutInflater.from(parent.context).inflate(
-            if (listingType == ListingType.VERTICAL) R.layout.fragment_home_listing_vertical_item
-                else R.layout.fragment_home_listing_horizontal_item
-            , parent, false).apply {
+             R.layout.fragment_home_listing_vertical_item, parent, false).apply {
 
             return SuperHeroHomeViewHolder(this)
 
@@ -47,7 +44,6 @@ class SuperHeroHomeAdapter(
         submitList(listOfSuperHeroes.toMutableList())
     }
 
-
 }
 
 class SuperHeroHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -56,13 +52,8 @@ class SuperHeroHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(superHero: SuperHero) {
 
-        Glide.with(itemView)
-            .load("${superHero.thumbnail.path}.${superHero.thumbnail.extension}")
-            .fitCenter()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(binding.ivHomeListingHeroPhoto)
-
-        binding.tvHomeListingHeroName.text = superHero.name
+        binding.cvHomeHeroCard.setImage(itemView, "${superHero.thumbnail.path}.${superHero.thumbnail.extension}")
+        binding.cvHomeHeroCard.setName(superHero.name)
 
     }
 

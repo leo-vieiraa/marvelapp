@@ -33,10 +33,10 @@ class ActivityDetailsShow : AppCompatActivity() {
 
         Glide.with(baseContext)
             .load("${superHero.thumbnail.path}.${superHero.thumbnail.extension}")
-            .into(binding.ivDetailsShowHeroPhoto)
+            .into(binding.ivDetailsItemPhoto)
 
-        binding.tvDetailsShowHeroName.text = superHero.name
-        binding.tvDetailsShowHeroDescription. text = superHero.description
+        binding.tvDetailsItemName.text = superHero.name
+        binding.tvDetailsItemDescription. text = superHero.description
 
     }
 

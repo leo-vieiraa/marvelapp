@@ -15,24 +15,10 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.example.marvelapp.components.CustomSearchBar
         android:id="@+id/et_home_listing_hero_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:boxBackgroundColor="@color/halfwhite"
-        app:startIconDrawable="@drawable/ic_search"
-        android:hint="@string/search_characters"
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_home_listing_hero_list">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@id/tv_home_listing_hero_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
