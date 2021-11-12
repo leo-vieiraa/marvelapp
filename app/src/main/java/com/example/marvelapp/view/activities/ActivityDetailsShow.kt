@@ -31,12 +31,10 @@ class ActivityDetailsShow : AppCompatActivity() {
 
         val superHero = intent.extras?.getSerializable("hero") as SuperHero
 
-        Glide.with(baseContext)
-            .load("${superHero.thumbnail.path}.${superHero.thumbnail.extension}")
-            .into(binding.ivDetailsItemPhoto)
+        binding.cvDetailsShow
+            .setImage(baseContext, "${superHero.thumbnail.path}.${superHero.thumbnail.extension}")
 
-        binding.tvDetailsItemName.text = superHero.name
-        binding.tvDetailsItemDescription. text = superHero.description
+        binding.cvDetailsShow.setData(superHero.name, superHero.description)
 
     }
 

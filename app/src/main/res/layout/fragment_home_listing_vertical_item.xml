@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.example.marvelapp.components.CustomCard
+    <com.example.custom_layout.CustomCard
         android:id="@+id/cv_home_hero_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

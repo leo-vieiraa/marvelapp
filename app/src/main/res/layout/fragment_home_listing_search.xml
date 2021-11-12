@@ -8,14 +8,14 @@
         android:id="@+id/tv_home_listing_hero_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:hint="@string/marvel_cheracters_list"
         android:fontFamily="@font/robotobold"
         android:textColorHint="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <com.example.marvelapp.components.CustomSearchBar
+    <com.example.custom_layout.CustomSearchBar
         android:id="@+id/et_home_listing_hero_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
