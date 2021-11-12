@@ -27,7 +27,7 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <com.example.marvelapp.components.CustomDetailsFragment
+    <com.example.custom_layout.CustomDetailsFragment
         android:id="@+id/cv_details_show"
         android:layout_width="match_parent"
         android:layout_height="0dp"

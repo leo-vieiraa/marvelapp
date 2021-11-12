@@ -1,4 +1,4 @@
-package com.example.marvelapp.components
+package com.example.custom_layout
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,7 +7,7 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.marvelapp.databinding.CustomCardBinding
+import com.example.custom_layout.databinding.CustomCardBinding
 
 class CustomCard @JvmOverloads constructor(
     context: Context,

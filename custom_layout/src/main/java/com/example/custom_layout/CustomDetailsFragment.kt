@@ -1,14 +1,12 @@
-package com.example.marvelapp.components
+package com.example.custom_layout
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.marvelapp.databinding.CustomDetailsFragmentBinding
-import com.example.marvelapp.model.SuperHero
+import com.example.custom_layout.databinding.CustomDetailsFragmentBinding
 
 class CustomDetailsFragment @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null

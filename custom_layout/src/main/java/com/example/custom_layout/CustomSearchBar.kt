@@ -1,23 +1,11 @@
-package com.example.marvelapp.components
+package com.example.custom_layout
 
 import android.content.Context
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.marvelapp.databinding.CustomSearchBarBinding
+import com.example.custom_layout.databinding.CustomSearchBarBinding
 import com.google.android.material.textfield.TextInputLayout
-
-//class CustomSearchBar @JvmOverloads constructor(
-//    context: Context, attrs: AttributeSet? = null
-//) : ConstraintLayout(context, attrs) {
-//
-//    private val binding = CustomSearchBarBinding
-//        .inflate(LayoutInflater.from(context), this, true)
-//
-//
-//
-//}
 
 class CustomSearchBar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
