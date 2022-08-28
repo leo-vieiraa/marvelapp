@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.R
-import com.example.marvelapp.components.CustomCard
 import com.example.marvelapp.databinding.FragmentHomeListingVerticalItemBinding
 import com.example.marvelapp.model.SuperHero
 

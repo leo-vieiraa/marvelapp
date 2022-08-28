@@ -20,7 +20,7 @@ class SuperHeroRepository @Inject constructor(
 
             val processedResponse = processData(results)
             insert(processedResponse!!.data.results)
-            processedResponse?.data?.results
+            processedResponse.data.results
         }
     }
 
