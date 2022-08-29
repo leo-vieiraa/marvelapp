@@ -6,4 +6,6 @@
     <string name="tv_featured_characters">FEATURED CHARACTERS</string>
     <string name="item_description">Super hero description</string>
     <string name="item_name">Super hero Name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

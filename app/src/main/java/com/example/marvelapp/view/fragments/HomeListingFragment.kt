@@ -14,13 +14,11 @@ import com.example.marvelapp.adapter.SuperHeroHomeAdapter
 import com.example.marvelapp.model.SuperHero
 import com.example.marvelapp.viewmodel.ViewModelHomeListing
 import dagger.hilt.android.AndroidEntryPoint
-import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.marvelapp.databinding.FragmentHomeListingBinding
 import com.example.marvelapp.utils.checkForInternet
-import com.example.marvelapp.view.activities.ActivityDetailsShow
 import com.example.marvelapp.view.activities.ActivityHome
 
 
@@ -45,20 +43,8 @@ class HomeListingFragment : Fragment(R.layout.fragment_home_listing) {
             listingViewModelHomeListing.searchFor(it)
         }
     }
-    private val superHeroHomeAdapterHorizontal = SuperHeroHomeAdapter (ListingType.HORIZONTAL) {
-
-        val i = Intent(requireActivity(), ActivityDetailsShow::class.java)
-        i.putExtra("hero", it)
-        startActivity(i)
-
-    }
-    private val superHeroHomeAdapterVertical = SuperHeroHomeAdapter (ListingType.VERTICAL) {
-
-        val i = Intent(requireActivity(), ActivityDetailsShow::class.java)
-        i.putExtra("hero", it)
-        startActivity(i)
-
-    }
+    private val superHeroHomeAdapterHorizontal = SuperHeroHomeAdapter (ListingType.HORIZONTAL)
+    private val superHeroHomeAdapterVertical = SuperHeroHomeAdapter (ListingType.VERTICAL)
 
 //   OBSERVERS
     private val observerQuery = Observer<String?> {}

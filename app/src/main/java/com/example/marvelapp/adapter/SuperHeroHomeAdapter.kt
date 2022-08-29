@@ -3,15 +3,16 @@ package com.example.marvelapp.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.R
 import com.example.marvelapp.databinding.FragmentHomeListingVerticalItemBinding
 import com.example.marvelapp.model.SuperHero
+import com.example.marvelapp.view.fragments.HomeListingFragmentDirections
 
 class SuperHeroHomeAdapter(
-    private val listingType: ListingType,
-    private val onclick: (SuperHero) -> Unit
+    private val listingType: ListingType
     ) : ListAdapter<SuperHero, SuperHeroHomeViewHolder>(DiffUtilItemCallback()) {
 
     private val listOfSuperHeroes = mutableListOf<SuperHero>()
@@ -29,7 +30,6 @@ class SuperHeroHomeAdapter(
     override fun onBindViewHolder(holder: SuperHeroHomeViewHolder, position: Int) {
         getItem(position).let { superhero ->
             holder.bind(superhero)
-            holder.itemView.setOnClickListener { onclick(superhero) }
         }
     }
 
@@ -53,7 +53,10 @@ class SuperHeroHomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         binding.cvHomeHeroCard.setImage(itemView, "${superHero.thumbnail.path}.${superHero.thumbnail.extension}")
         binding.cvHomeHeroCard.setName(superHero.name)
-
+        itemView.setOnClickListener {
+            val action = HomeListingFragmentDirections.actionHomeListingFragmentToDetailsFragment(superHero)
+            it.findNavController().navigate(action)
+        }
     }
 
 }
